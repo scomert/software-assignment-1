@@ -4,14 +4,14 @@ from django.shortcuts import render
 from django.http import Http404
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import entries
+from .models import my_todos
 
-def get_all_entries(request):
-    return render(request, "my_todos.html", {"entries": entries})
+def show_todo(request):
+    return render(request, "my_todos.html", {"todos": my_todos})
 
 
-def get_specific_entry(request, todo_id):
+def get_todo(request, todo_id):
     try:
-        return render(request, "entry.html", {"entry":entries[int(todo_id)]})
+        return HttpResponse(my_todos[int(todo_id)])
     except IndexError:
         raise Http404("We don't have any.")

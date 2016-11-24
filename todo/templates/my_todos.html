@@ -6,14 +6,11 @@
 </head>
 <body>
 
-<ul>
-    {% for entry_header, entry_body in entries %}
-        <li>
-            <h1>{{ entry_header }}</h1>
-            <p>{{ entry_body }}</p>
-        </li>
+<ol>
+    {% for el in todos %}
+        <li> {{ el }} </li>
     {% endfor %}
-</ul>
+</ol>
 
 </body>
 </html>
