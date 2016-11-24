@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todos</title>
+</head>
+<body>
+
+<ul>
+    {% for entry_header, entry_body in entries %}
+        <li>
+            <h1>{{ entry_header }}</h1>
+            <p>{{ entry_body }}</p>
+        </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
