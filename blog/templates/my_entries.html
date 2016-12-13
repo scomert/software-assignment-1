@@ -6,11 +6,13 @@
 </head>
 <body>
 
+<h3>{%  if user.is_authenticated %}Welcome,{% endif %} {{ user.username }}</h3>
+
 <ul>
-    {% for entry_header, entry_body in entries %}
+    {% for entry in entries %}
         <li>
-            <h1>{{ entry_header }}</h1>
-            <p>{{ entry_body }}</p>
+            <h1>{{ entry.title }}</h1>
+            <p>{{ entry.text }}</p>
         </li>
     {% endfor %}
 </ul>

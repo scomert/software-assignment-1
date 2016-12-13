@@ -4,11 +4,17 @@ from django.shortcuts import render
 from django.http import Http404
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import entries
+from .models import entries, Entry
 
 
 def get_all_entries(request):
-    return render(request, "my_entries.html", {"entries": entries})
+    entry = Entry.objects.all()
+
+    if request.user.is_authenticated:
+        user = request.user
+        return render(request, "my_entries.html", {"entries": entry, "user": user})
+
+    return render(request, "my_entries.html", {"entries": entry, "user": request.user})
 
 
 def get_specific_entry(request, todo_id):
