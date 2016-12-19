@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
+from tags.models import Tag
 
 # Create your models here.
 
@@ -17,6 +19,8 @@ entries = [
 class Entry(models.Model):
     title = models.CharField(max_length=50)
     text = models.CharField(max_length=500)
+    user = models.ForeignKey(User, default=1)
+    tags = models.ManyToManyField(Tag)
 
     def __unicode__(self):
-        return self.title
+        return self.title + " " + self.user.username

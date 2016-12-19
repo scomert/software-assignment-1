@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<div><a href="{% url "create" %}">Add new entry</a> </div>
+
 <h3>{%  if user.is_authenticated %}Welcome,{% endif %} {{ user.username }}</h3>
 
 <ul>
@@ -13,7 +15,16 @@
         <li>
             <h1>{{ entry.title }}</h1>
             <p>{{ entry.text }}</p>
+            <span>Author : {{ entry.user.username }}</span><br/>
+            Tags:
+            {%  for tag in entry.tags.all  %}
+                 <span style="color: chocolate">{{ tag.name }},</span>
+                {% empty %}
+                    No tags in this entry.
+            {% endfor %}
         </li>
+        {% empty %}
+            <li>Sorry, no entries.</li>
     {% endfor %}
 </ul>
 
