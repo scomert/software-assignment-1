@@ -18,7 +18,7 @@ entries = [
 
 class Entry(models.Model):
     title = models.CharField(max_length=50)
-    text = models.CharField(max_length=500)
+    text = models.TextField()
     user = models.ForeignKey(User, default=1)
     tags = models.ManyToManyField(Tag)
 

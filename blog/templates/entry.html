@@ -6,8 +6,14 @@
 </head>
 <body>
 
-    <h1>{{ entry.0 }}</h1>
-    <p>{{ entry.1 }}</p>
-
+            <h1>Title : {{ entry.title }}</h1>
+            <p>Body : {{ entry.text }}</p>
+            <span>Author : {{ entry.user.username }}</span><br/>
+            Tags:
+            {%  for tag in entry.tags.all  %}
+                 <span style="color: chocolate">{{ tag.name }},</span>
+                {% empty %}
+                    No tags in this entry.
+            {% endfor %}
 </body>
 </html>

@@ -9,11 +9,10 @@
 <div><a href="{% url "create" %}">Add new entry</a> </div>
 
 <h3>{%  if user.is_authenticated %}Welcome,{% endif %} {{ user.username }}</h3>
-
 <ul>
     {% for entry in entries %}
         <li>
-            <h1>{{ entry.title }}</h1>
+            <a href="{% url "specific" entry.id %}"><h1>{{ entry.title }}</h1></a>
             <p>{{ entry.text }}</p>
             <span>Author : {{ entry.user.username }}</span><br/>
             Tags:

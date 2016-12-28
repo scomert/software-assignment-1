@@ -6,15 +6,17 @@
 </head>
 <body>
     <form method="post"> {% csrf_token %}
-        Title : <br/>
-        <input type="text" name="title"> <br/>
-        Text :<br/>
-        <textarea rows="4" cols="50" name="text">
-        </textarea><br/>
-        {%  for tag in tags %}
-            <input type="checkbox" name="{{ tag.id }}"> {{ tag.name }}
-        {% endfor %}<br/>
-
+{#        Title : <br/>#}
+{#        <input type="text" name="title"> <br/>#}
+{#        Text :<br/>#}
+{#        <textarea rows="4" cols="50" name="text">#}
+{#        </textarea><br/>#}
+{#        {%  for tag in tags %}#}
+{#            <input type="checkbox" name="{{ tag.id }}"> {{ tag.name }}#}
+{#        {% endfor %}<br/>#}
+        <table>
+            {{ form.as_table }}
+        </table>
         <input type="submit" value="Submit">
     </form>
 </body>
