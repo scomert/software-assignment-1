@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+</head>
+<body>
+    <h1>The entries of {{ user.username }}</h1>  <a href="{% url "admin-entries" %}">
+        <u>Back</u>
+    </a>
+    {% include "list_entries_part.html" %}
+</body>
+</html>

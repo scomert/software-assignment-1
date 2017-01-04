@@ -1,11 +1,36 @@
 from django.http import Http404
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
 
 from tags.models import Tag
-from .models import entries, Entry
+from .models import Entry
 from .forms import EntryForm
+from django.contrib.auth.models import User
+
+
+def get_entries_of_a_user(request, user_id):
+    if request.user.is_superuser:
+        entries = Entry.objects.filter(user=user_id)
+        user = User.objects.get(pk = user_id)
+        return render(request, "user_specific_entries.html", {
+            "entries": entries,
+            "user": user,
+        })
+    else:
+        return HttpResponse("Unauthorized", status=401)
+
+
+def get_all_entries_admin(request):
+    if request.user.is_superuser:
+        entries = Entry.objects.all()
+        return render(request, "entries_admin.html", {
+            "entries": entries,
+            "user": request.user,
+        })
+    else:
+        return HttpResponse("Unauthorized", status=401)
 
 
 def get_all_entries(request):
